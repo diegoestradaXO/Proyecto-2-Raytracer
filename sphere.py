@@ -16,7 +16,7 @@ class Material(object):
     self.refractive_index = refractive_index
 
 class Intersect(object):
-  def __init__(self, distance, point, normal):
+  def __init__(self, distance=0, point=None, normal=None):
     self.distance = distance
     self.point = point
     self.normal = normal
@@ -50,39 +50,3 @@ class Sphere(object):
       point=hit,
       normal=normal
     )
-
-class Texture(object):
-    def __init__(self, path):
-        self.path = path
-        self.read()
-
-    def read(self):
-        image = open(self.path, "rb")
-
-        image.seek(2 + 4 + 4)
-        header_size = struct.unpack("=l", image.read(4))[0]
-        image.seek(2 + 4 + 4 + 4 + 4)
-
-        self.width = struct.unpack("=l", image.read(4))[0]  
-        self.height = struct.unpack("=l", image.read(4))[0] 
-        image.seek(header_size)
-
-        self.pixels =[]
-
-        for y in range(self.height):
-            self.pixels.append([])
-            for x in range(self.width):
-                b = ord(image.read(1))
-                g = ord(image.read(1))
-                r = ord(image.read(1))
-                self.pixels[y].append(color(r,g,b))
-        image.close()
-    
-    def getColor(self, tx, ty, intensity=1):
-        if tx >= 0 and tx <= 1 and ty >= 0 and ty <= 1:
-            x = round(tx * self.width - 1)
-            y = round(ty * self.height - 1)
-
-            return self.pixels[y][x]
-        else:
-            return color(0,0,0)

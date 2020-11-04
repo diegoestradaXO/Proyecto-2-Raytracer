@@ -1,26 +1,13 @@
 import struct
 
+from collections import namedtuple
 # ===============================================================
 # Math
 # ===============================================================
 
 
-class V3(object):
-  def __init__(self, x, y, z):
-    self.x = x
-    self.y = y
-    self.z = z
-
-  def __repr__(self):
-    return "V3(%s, %s, %s)" % (self.x, self.y, self.z)
-
-class V2(object):
-  def __init__(self, x, y):
-    self.x = x
-    self.y = y
-
-  def __repr__(self):
-    return "V2(%s, %s)" % (self.x, self.y)
+V2 = namedtuple('Vertex2', ['x', 'y'])
+V3 = namedtuple('Vertex3', ['x', 'y', 'z'])
 
 # V2 = namedtuple('Point2', ['x', 'y'])
 # V3 = namedtuple('Point3', ['x', 'y', 'z'])

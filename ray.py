@@ -2,6 +2,7 @@ from lib import *
 from sphere import *
 from plane import *
 from math import pi, tan
+from cube import *
 
 BLACK = color(0, 0, 0)
 WHITE = color(255, 255, 255)
@@ -118,26 +119,77 @@ class Raytracer(object):
         self.pixels[y][x] = self.cast_ray(V3(0,0,0), direction)
 
 
-ivory = Material(diffuse=color(255, 255, 200), albedo=(0.6, 0.3, 0.1, 0), spec=50)
-rubber = Material(diffuse=color(80, 0, 0), albedo=(0.9, 0.1, 0, 0, 0), spec=10)
+water = Material(diffuse=color(51, 83, 152), albedo=(0.6, 0.3, 0.1, 0), spec=50)
+oak = Material(diffuse=color(113, 90, 50), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+leaves = Material(diffuse=color(103, 143, 31), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+leaves1 = Material(diffuse=color(55, 129, 34), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+leaves2 = Material(diffuse=color(35, 81, 23), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+
 mirror = Material(diffuse=color(255, 255, 255), albedo=(0, 10, 0.8, 0), spec=1425)
 glass = Material(diffuse=color(150, 180, 200), albedo=(0, 0.5, 0.1, 0.8), spec=125, refractive_index=1.5)
 
-r = Raytracer(1000, 1000)
+concrete = Material(diffuse=color(99, 99, 99), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+
+
+r = Raytracer(800, 600)
 
 r.light = Light(
   position=V3(-20, 10, 20),
   intensity=1.5
 )
 
-r.background_color = color(50, 50, 200)
+r.background_color = color(131, 175, 255)
 
 r.scene = [
-  Sphere(V3(0, 0, -5), 0.5, glass),
-  Sphere(V3(1, 1, -8), 1.7, rubber),
-  Sphere(V3(-3, 3, -10), 2, mirror),
-  Plane(2, ivory)
+  #piso
+  Cube(V3(0, -2, -2), 3, water),  
 ]
+#arbol izq
+r.scene.append( Cube(V3(-1.5, -0.5, -3), 0.5 , oak ))
+r.scene.append( Cube(V3(-1.5, 0, -3), 0.5 , oak ) )
+r.scene.append( Cube(V3(-1.5, 0.5, -3), 0.5 , oak ))
+r.scene.append( Cube(V3(-1.5, 1, -3), 0.5 , oak ))
+
+r.scene.append( Cube(V3(-2, 1, -3), 0.5 , leaves ) )
+r.scene.append( Cube(V3(-1.5, 1, -3.5), 0.5 , leaves ) )
+r.scene.append( Cube(V3(-1, 1, -3), 0.5 , leaves1 ) )
+r.scene.append( Cube(V3(-1.5, 1, -2.5), 0.5 , leaves ) )
+r.scene.append( Cube(V3(-1.5, 1.5, -3), 0.5 , leaves1 ) )
+
+#arbol centro
+r.scene.append( Cube(V3(0, -0.5, -4), 0.5 , oak ))
+r.scene.append( Cube(V3(0, 0, -4), 0.5 , oak ) )
+r.scene.append( Cube(V3(0, 0.5, -4), 0.5 , oak ))
+r.scene.append( Cube(V3(0, 1, -4), 0.5 , oak ))
+
+r.scene.append( Cube(V3(-0.5, 1, -4), 0.5 , leaves2 ) )
+r.scene.append( Cube(V3(0, 1, -4.5), 0.5 , leaves ) )
+r.scene.append( Cube(V3(0.5, 1, -4), 0.5 , leaves1 ) )
+r.scene.append( Cube(V3(0, 1, -3.5), 0.5 , leaves1 ) )
+r.scene.append( Cube(V3(0, 1.5, -4), 0.5 , leaves ) )
+
+#arbol derecha
+r.scene.append( Cube(V3(1.5, -0.5, -3), 0.5 , oak ))
+r.scene.append( Cube(V3(1.5, 0, -3), 0.5 , oak ) )
+r.scene.append( Cube(V3(1.5, 0.5, -3), 0.5 , oak ))
+r.scene.append( Cube(V3(1.5, 1, -3), 0.5 , oak ))
+
+r.scene.append( Cube(V3(1, 1, -3), 0.5 , leaves ) )
+r.scene.append( Cube(V3(1.5, 1, -3.5), 0.5 , leaves ) )
+r.scene.append( Cube(V3(2, 1, -3), 0.5 , leaves2 ) )
+r.scene.append( Cube(V3(1.5, 1, -2.5), 0.5 , leaves ) )
+r.scene.append( Cube(V3(1.5, 1.5, -3), 0.5 , leaves1 ) )
+
+r.scene.append( Cube(V3(1, -0.5, -3), 0.5 , concrete))
+r.scene.append( Cube(V3(-1, -0.5, -3), 0.5 , leaves))
+r.scene.append( Cube(V3(0.5, -0.5, -3), 0.5 , leaves))
+r.scene.append( Cube(V3(-0.5, -0.5, -3), 0.5 , leaves))
+r.scene.append( Cube(V3(0, -0.5, -3), 0.5 , leaves))
+
+r.scene.append( Cube(V3(-1.25, -0.5, -2), 0.5 , leaves))
+r.scene.append( Cube(V3(1.25, -0.5, -2), 0.5 , concrete))
+
+r.envmap = None
 
 r.render()
 r.write('out.bmp')
