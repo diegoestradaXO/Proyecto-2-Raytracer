@@ -1,5 +1,12 @@
 # Proyecto 2: Raytracer
 
+## Resultado:
+
+La escena realizada fue la siguiente:
+
+![Minecraft RT](output.bmp)
+
+
 ## Objetivo
 Que los estudiantes pongan en práctica todos los conocimientos adquiridos sobre raytracing
 
@@ -19,9 +26,3 @@ No pueden usar librerías externas a su lenguaje de programación. Su nota máxi
 - [5 puntos] por implementar reflexión en al menos uno de sus materiales
 - [30 puntos] por implementar figuras geométricas distintas a esferas, cubos, rectangulos y planos
 - [20 puntos] por cargar un modelo obj
-
-## Resultado:
-
-La escena realizada fue la siguiente:
-
-![Minecraft RT](output.bmp)
