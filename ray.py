@@ -124,6 +124,8 @@ oak = Material(diffuse=color(113, 90, 50), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
 leaves = Material(diffuse=color(103, 143, 31), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
 leaves1 = Material(diffuse=color(55, 129, 34), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
 leaves2 = Material(diffuse=color(35, 81, 23), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+apple = Material(diffuse=color(247, 27, 42), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+
 
 mirror = Material(diffuse=color(255, 255, 255), albedo=(0, 10, 0.8, 0), spec=1425)
 glass = Material(diffuse=color(150, 180, 200), albedo=(0, 0.5, 0.1, 0.8), spec=125, refractive_index=1.5)
@@ -140,11 +142,12 @@ r.light = Light(
 
 r.background_color = color(131, 175, 255)
 
-r.scene = [
-  #piso
-  Cube(V3(0, -2, -2), 3, water),  
+r.scene = [  
 ]
-#arbol izq
+
+#piso
+r.scene.append(Cube(V3(0, -2, -2), 3, water))  
+# arbol izq
 r.scene.append( Cube(V3(-1.5, -0.5, -3), 0.5 , oak ))
 r.scene.append( Cube(V3(-1.5, 0, -3), 0.5 , oak ) )
 r.scene.append( Cube(V3(-1.5, 0.5, -3), 0.5 , oak ))
@@ -153,7 +156,11 @@ r.scene.append( Cube(V3(-1.5, 1, -3), 0.5 , oak ))
 r.scene.append( Cube(V3(-2, 1, -3), 0.5 , leaves ) )
 r.scene.append( Cube(V3(-1.5, 1, -3.5), 0.5 , leaves ) )
 r.scene.append( Cube(V3(-1, 1, -3), 0.5 , leaves1 ) )
+r.scene.append(Sphere(V3(-0.75, 0.75, -2.55),0.05,apple)) #apple
+r.scene.append(Sphere(V3(-0.90, 1, -2.55),0.05,apple)) #apple
+r.scene.append(Sphere(V3(-1.08, 0.90, -2.55),0.05,apple)) #apple
 r.scene.append( Cube(V3(-1.5, 1, -2.5), 0.5 , leaves ) )
+r.scene.append(Sphere(V3(-1, 0.6, -1.5),0.05,apple)) #apple
 r.scene.append( Cube(V3(-1.5, 1.5, -3), 0.5 , leaves1 ) )
 
 #arbol centro
@@ -163,8 +170,12 @@ r.scene.append( Cube(V3(0, 0.5, -4), 0.5 , oak ))
 r.scene.append( Cube(V3(0, 1, -4), 0.5 , oak ))
 
 r.scene.append( Cube(V3(-0.5, 1, -4), 0.5 , leaves2 ) )
+r.scene.append(Sphere(V3(-0.6, 0.85, -3.58),0.05,apple)) #apple
+r.scene.append(Sphere(V3(-0.35, 0.95, -3.58),0.05,apple)) #apple
 r.scene.append( Cube(V3(0, 1, -4.5), 0.5 , leaves ) )
 r.scene.append( Cube(V3(0.5, 1, -4), 0.5 , leaves1 ) )
+r.scene.append(Sphere(V3(0.6, 0.85, -3.58),0.05,apple)) #apple
+r.scene.append(Sphere(V3(0.35, 0.95, -3.58),0.05,apple)) #apple
 r.scene.append( Cube(V3(0, 1, -3.5), 0.5 , leaves1 ) )
 r.scene.append( Cube(V3(0, 1.5, -4), 0.5 , leaves ) )
 
@@ -175,10 +186,13 @@ r.scene.append( Cube(V3(1.5, 0.5, -3), 0.5 , oak ))
 r.scene.append( Cube(V3(1.5, 1, -3), 0.5 , oak ))
 
 r.scene.append( Cube(V3(1, 1, -3), 0.5 , leaves ) )
+r.scene.append(Sphere(V3(1, 1, -2.55),0.05,apple)) #apple
+r.scene.append(Sphere(V3(0.7, 1, -3),0.05,apple)) #apple
 r.scene.append( Cube(V3(1.5, 1, -3.5), 0.5 , leaves ) )
 r.scene.append( Cube(V3(2, 1, -3), 0.5 , leaves2 ) )
 r.scene.append( Cube(V3(1.5, 1, -2.5), 0.5 , leaves ) )
 r.scene.append( Cube(V3(1.5, 1.5, -3), 0.5 , leaves1 ) )
+r.scene.append(Sphere(V3(1.25, 1.35, -2.5),0.05,apple)) #apple
 
 r.scene.append( Cube(V3(1, -0.5, -3), 0.5 , concrete))
 r.scene.append( Cube(V3(-1, -0.5, -3), 0.5 , leaves))
@@ -192,4 +206,4 @@ r.scene.append( Cube(V3(1.25, -0.5, -2), 0.5 , concrete))
 r.envmap = None
 
 r.render()
-r.write('out.bmp')
+r.write('output.bmp')
