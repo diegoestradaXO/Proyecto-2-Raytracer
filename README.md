@@ -26,3 +26,7 @@ No pueden usar librerías externas a su lenguaje de programación. Su nota máxi
 - [5 puntos] por implementar reflexión en al menos uno de sus materiales
 - [30 puntos] por implementar figuras geométricas distintas a esferas, cubos, rectangulos y planos
 - [20 puntos] por cargar un modelo obj
+
+## Referencias
+
+[Repositorio de Github de Dennis Aldana](https://github.com/denn1s/python-simple-raytracer)
