@@ -119,12 +119,12 @@ class Raytracer(object):
         self.pixels[y][x] = self.cast_ray(V3(0,0,0), direction)
 
 
-water = Material(diffuse=color(51, 83, 152), albedo=(0.6, 0.3, 0.1, 0), spec=50)
+water = Material(diffuse=color(51, 83, 152), albedo=(0.6, 0.3, 0.1, 0), spec=50, refractive_index=1.5)
 oak = Material(diffuse=color(113, 90, 50), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
 leaves = Material(diffuse=color(103, 143, 31), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
 leaves1 = Material(diffuse=color(55, 129, 34), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
 leaves2 = Material(diffuse=color(35, 81, 23), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
-apple = Material(diffuse=color(247, 27, 42), albedo=(0.9, 0.1, 0, 0, 0), spec=50)
+apple = Material(diffuse=color(247, 27, 42), albedo=(0.9, 0.1, 0, 0, 0), spec=50, refractive_index= 0)
 
 
 mirror = Material(diffuse=color(255, 255, 255), albedo=(0, 10, 0.8, 0), spec=1425)
@@ -144,8 +144,7 @@ r.background_color = color(131, 175, 255)
 
 r.scene = [  
 ]
-
-#piso
+# #piso
 r.scene.append(Cube(V3(0, -2, -2), 3, water))  
 # arbol izq
 r.scene.append( Cube(V3(-1.5, -0.5, -3), 0.5 , oak ))
@@ -169,11 +168,11 @@ r.scene.append( Cube(V3(0, 0, -4), 0.5 , oak ) )
 r.scene.append( Cube(V3(0, 0.5, -4), 0.5 , oak ))
 r.scene.append( Cube(V3(0, 1, -4), 0.5 , oak ))
 
-r.scene.append( Cube(V3(-0.5, 1, -4), 0.5 , leaves2 ) )
+r.scene.append( Cube(V3(-0.5, 1, -4), 0.5 , leaves1 ) )
 r.scene.append(Sphere(V3(-0.6, 0.85, -3.58),0.05,apple)) #apple
 r.scene.append(Sphere(V3(-0.35, 0.95, -3.58),0.05,apple)) #apple
 r.scene.append( Cube(V3(0, 1, -4.5), 0.5 , leaves ) )
-r.scene.append( Cube(V3(0.5, 1, -4), 0.5 , leaves1 ) )
+r.scene.append( Cube(V3(0.5, 1, -4), 0.5 , leaves2 ) )
 r.scene.append(Sphere(V3(0.6, 0.85, -3.58),0.05,apple)) #apple
 r.scene.append(Sphere(V3(0.35, 0.95, -3.58),0.05,apple)) #apple
 r.scene.append( Cube(V3(0, 1, -3.5), 0.5 , leaves1 ) )
